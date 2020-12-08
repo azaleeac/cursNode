@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const config = require ('./config/index');
 
+require('./config/mongoose').initMongoose();
 require('./config/express').initExpress(app);
 require('./config/routes').initRoutes(app);
 

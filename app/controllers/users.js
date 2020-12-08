@@ -1,9 +1,12 @@
 'use strict'
 
+const User = require('../models/users');
+
 module.exports  = {
     isAdmin: isAdmin,
     getUsers: getUsers,
-    postUsers: postUsers
+    postUsers: postUsers,
+    createUser: createUser
 };
 
 function isAdmin (req, res, next) {
@@ -25,4 +28,18 @@ function postUsers (req, res, next) {
     console.log('post users first mid');
     req.resources.test = 'teeest';
     next();
+}
+
+function createUser(req, res, next) {
+    console.log('req body', req.body);
+    const user = new User(req.body);
+
+    user.save(function (err, result) {
+        if(err) {
+            console.log('err', err);
+            return res.json(err);
+        }
+
+        return res.json(result);
+    });
 }

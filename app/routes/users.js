@@ -20,6 +20,7 @@ router.get('/users',
 router.post('/users',
     usersController.isAdmin,
     usersController.postUsers,
+    usersController.createUser,
     function(req, res, next) {
         console.log('post users');
         console.log(req.body);
