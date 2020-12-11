@@ -14,7 +14,8 @@ function initExpress(app) {
 
     app.use(function(req, res, next){
         req.resources = req.resources || {};
-
+        // asa s-ar pune sa ai resursa pe orice request
+        // res.locals.isLoggedIn = !!req.user;
         next();
     });
 }

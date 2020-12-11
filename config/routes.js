@@ -6,7 +6,7 @@ module.exports = {initRoutes: initRoutes};
 
 function initRoutes(app) {
     const routesPath = path.join(__dirname, '../app/routes');
-    const routes = ['users'];
+    const routes = ['users', 'services', 'uploads'];
 
     routes.forEach(function(route) {
         console.log("route", route);

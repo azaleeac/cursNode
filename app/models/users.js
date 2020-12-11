@@ -9,12 +9,32 @@ const userSchema = new Schema({
         required: true,
         unique: false
     },
-
     email: {
         type: String,
         required: true,
         unique: true
-    }
+    },
+    isActive: {
+        type: Boolean
+    },
+    details: {
+        age: {
+            type: Number
+        },
+        role: {
+            type: String
+        } 
+    },
+    documents: [
+        {
+            name: {
+                type: String
+            },
+            docType: {
+                type: String
+            }
+        }
+    ]
 });
 
 module.exports = mongoose.model('user', userSchema, 'users');

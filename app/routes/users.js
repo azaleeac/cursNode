@@ -7,26 +7,23 @@ const usersController = require('../controllers/users');
 router.get('/users',
     usersController.isAdmin,
     usersController.getUsers,
-    function(req, res, next) {
-        console.log('get users seconds mid');
-        next();
-    },
-    function(req, res, next) {
-        console.log('get users');
-        return res.json({users: true});
-    }
+    usersController.responseToJSON('users')
+    // function(req, res, next) {
+    //     console.log('get users');
+    //     return res.json(req.resources.users);
+    // }
+);
+
+router.get('/usersById/:userId',
+    usersController.getUsersById,
+    usersController.responseToJSON('users')
 );
 
 router.post('/users',
-    usersController.isAdmin,
-    usersController.postUsers,
+    // usersController.isAdmin,
+    // usersController.postUsers,
     usersController.createUser,
-    function(req, res, next) {
-        console.log('post users');
-        console.log(req.body);
-        console.log('resources', req.resources);
-        return res.json({users: true});
-    }
+    usersController.responseToJSON('newUser')
 );
 
 router.put('/users',
@@ -38,11 +35,12 @@ router.put('/users',
 );
 
 router.delete('/users',
-    usersController.isAdmin,
-    function(req, res, next) {
-        console.log('delete users');
-        return res.json({users: true});
-    }
+    usersController.deleteUsersById,
+    usersController.responseToJSON('users')
+    // function(req, res, next) {
+    //     console.log('delete users');
+    //     return res.json({users: true});
+    // }
 );
 
 module.exports = router;
